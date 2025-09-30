@@ -1,0 +1,24 @@
+services:
+  openvpn-as:
+    image: openvpn/openvpn-as:latest
+    container_name: openvpn-as
+    restart: unless-stopped
+    ports:
+      - "943:943"   # Admin Web UI
+      - "9443:9443" # Client Web UI
+      - "1194:1194/udp" # OpenVPN UDP port
+    cap_add:
+      - NET_ADMIN
+      - MKNOD
+    devices:
+      - /dev/net/tun
+    volumes:
+      - openvpn_data:/openvpn
+    environment:
+      - TZ=UTC
+      # Optional: you can set admin password at startup
+      # - ADMIN_USER=openvpn
+      # - ADMIN_PASS=SuperSecret123
+
+volumes:
+  openvpn_data:
