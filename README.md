@@ -75,6 +75,35 @@ sudo systemctl reload nginx
 * Admin UI accessible at `/admin/`
 * Client UI accessible at `/`
 
+**Allow UDP Port**
+```bash
+# Allow SSH (port 22)
+sudo ufw allow 22/tcp
+
+# Allow OpenVPN UDP port
+sudo ufw allow 1194/udp
+
+# Allow NGINX HTTP/HTTPS
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
+
+# Enable UFW (if not already)
+sudo ufw enable
+
+# Reload to apply
+sudo ufw reload
+
+# Check status
+sudo ufw status
+```
+You should see something like:
+```bash
+22/tcp   ALLOW Anywhere
+1194/udp ALLOW Anywhere
+80/tcp   ALLOW Anywhere
+443/tcp  ALLOW Anywhere
+```
+
 
 ## Initial Setup
 
