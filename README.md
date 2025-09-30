@@ -22,6 +22,11 @@ This repository contains a **Docker Compose setup** for running **OpenVPN Access
 
 Create an NGINX config for your domain or IP:
 
+```bash
+sudo nano /etc/nginx/sites-available/vpn.example.com.conf
+```
+paste the below config
+
 ```nginx
 server {
     listen 80;
@@ -55,6 +60,13 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
+
+```
+Enable and Restart
+```bash
+sudo ln -s /etc/nginx/sites-available/vpn.example.com.conf /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
 ```
 
 **Notes**:
