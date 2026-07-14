@@ -1,6 +1,7 @@
 services:
   openvpn-as:
     image: openvpn/openvpn-as:latest
+    #network_mode: "host"
     container_name: openvpn-as
     restart: unless-stopped
     ports:
